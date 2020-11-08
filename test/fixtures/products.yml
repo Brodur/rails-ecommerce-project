@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upc: 1
+  price: 9.99
+  cost: 9.99
+  description: MyText
+  on_hand: 1
+
+two:
+  upc: 1
+  price: 9.99
+  cost: 9.99
+  description: MyText
+  on_hand: 1
