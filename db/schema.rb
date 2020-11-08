@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_154252) do
+ActiveRecord::Schema.define(version: 2020_11_08_155627) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "provinces_id", null: false
+    t.integer "customers_id", null: false
+    t.boolean "is_primary_address", null: false
+    t.string "postal_code", null: false
+    t.string "country", null: false
+    t.string "city", null: false
+    t.string "address_line_one", null: false
+    t.string "address_line_two"
+    t.string "address_additional"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customers_id"], name: "index_addresses_on_customers_id"
+    t.index ["provinces_id"], name: "index_addresses_on_provinces_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
