@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_161253) do
+ActiveRecord::Schema.define(version: 2020_11_08_161758) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "provinces_id", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_161253) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customers_id", null: false
+    t.integer "customer_id", null: false
     t.integer "address_id", null: false
     t.datetime "order_date"
     t.decimal "historic_pst_rate"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_161253) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
-    t.index ["customers_id"], name: "index_orders_on_customers_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -61,5 +61,5 @@ ActiveRecord::Schema.define(version: 2020_11_08_161253) do
   end
 
   add_foreign_key "orders", "addresses"
-  add_foreign_key "orders", "customers", column: "customers_id"
+  add_foreign_key "orders", "customers"
 end

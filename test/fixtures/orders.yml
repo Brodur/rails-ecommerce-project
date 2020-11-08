@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  address: one
+  order_date: 2020-11-08 10:17:58
+  historic_pst_rate: 9.99
+  historic_gst_rate: 9.99
+  historic_hst_rate: 9.99
+
+two:
+  customer: two
+  address: two
+  order_date: 2020-11-08 10:17:58
+  historic_pst_rate: 9.99
+  historic_gst_rate: 9.99
+  historic_hst_rate: 9.99
