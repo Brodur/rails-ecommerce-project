@@ -8,46 +8,46 @@ The database will consist of 5 primary objects: Customers, Addresses, Provinces,
 ## Customers
 The customers table will contain the Customer’s full name, Username, Email address, and password (salted and hashed).
 ### Relationships
-1. One Customer can have zero to many Orders
-2. One Customer can have zero to many Addresses
+- One Customer can have zero to many Orders
+- One Customer can have zero to many Addresses
 
 ## Addresses
 The Addresses table will contain a reference to the Customer who’s address it is, a flag for if it is the primary address, a postal code, the country code, a reference to a Province, the city name, the street address, and an optional line 2 street address and optional additional details.
 ### Relationships
-1. One Address belongs to one Customer. An address cannot exist without a Customer.
-2. An Address can have zero to many orders.
-3. One Address belongs to one Province. An address cannot exist without a Province.
+- One Address belongs to one Customer. An address cannot exist without a Customer.
+- An Address can have zero to many orders.
+- One Address belongs to one Province. An address cannot exist without a Province.
 
 ## Provinces
 The Province will contain the name, two letter province code, and optionally the PST, GST, and HST percentages applicable.
 ### Relationships
-1. One Province can have zero to many addresses.
+- One Province can have zero to many addresses.
 
 ## Orders
 The Orders table contains a reference to the Customer, a reference to the Address, the date, and historic information regarding the applicable PST, GST, and HST.
 ### Relationships
-1. One Order has one Customer. An Order cannot exist without a Customer.
-2. One Order has one Address. An Order cannot exist without an Address.
-3. Through ProductsOrders, one Order can have one to many Products.
+- One Order has one Customer. An Order cannot exist without a Customer.
+- One Order has one Address. An Order cannot exist without an Address.
+- Through ProductsOrders, one Order can have one to many Products.
 
 ## Products
 The Products table contains information such as the UPC of the Product, the price, cost, description, and quantity on hand.
 ### Relationships
-1. Through ProductsOrders, one Product can have zero to many Orders.
-2. One Product belongs to one Category
+- Through ProductsOrders, one Product can have zero to many Orders.
+- One Product belongs to one Category
 
 ## ProductsOrders
 The ProductsOrders table reifies the many to many relationships between Orders and Products. It contains historical cost and price of the product, as well as how many have been ordered.
 ### Relationships
-1. One ProductOrder belongs to one Product. A ProductOrder cannot exist without a Product.
-2. One ProductOrder belongs to one Order. A ProductOrder cannot exist without an Order.
+- One ProductOrder belongs to one Product. A ProductOrder cannot exist without a Product.
+- One ProductOrder belongs to one Order. A ProductOrder cannot exist without an Order.
 
 ## Categories
 Categories table containing categories for the various products.
 ### Relationships
-1. One Category may have zero to many Products
-2. One Category may have zero to many Child Categories
-3. One Category may have zero to one Parent Category
+- One Category may have zero to many Products
+- One Category may have zero to many Child Categories
+- One Category may have zero to one Parent Category
 
 # Entity Relationship Diagram
 
