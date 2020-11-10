@@ -6,15 +6,16 @@ class Category < ApplicationRecord
   validates :name, presence: true
   # validates_with CategoryValidator, fields: [:parent]
 
-  # def self.path
-  #   path = []
-  #   parent = self.parent
-  #   until parent.empty?
-  #     path << parent
-  #     parent = parent.parent
-  #   end
-  #   path.reverse
-  # end
+  # Gets the object's parents as an array of objects
+  def path
+    path = []
+    parent = self.parent
+    until parent.nil?
+      path << parent
+      parent = parent.parent
+    end
+    path.reverse
+  end
 end
 
 # class CategoryValidator < ActiveModel::Validator
