@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   belongs_to :parent, class_name: "Category", optional: true
 
   validates :name, presence: true
-  # validates_with CategoryValidator, fields: [:parent]
+  validates_with CategoryValidator, attributes: [:parent]
 
   # Gets the object's parents as an array of objects
   def path
@@ -16,8 +16,15 @@ class Category < ApplicationRecord
     end
     path.reverse
   end
-end
 
-# class CategoryValidator < ActiveModel::Validator
-#   def validate(record); end
-# end
+  # Gets the path of a given object
+  def self.path(category)
+    path = false
+    if category.is_a?(Category)
+      path = category.path if category.valid?
+    else
+      path = Category.find(category).path
+    end
+    path
+  end
+end
