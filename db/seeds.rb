@@ -91,7 +91,68 @@ Province.create(
   gst_rate: 0.05
 )
 
-## Active Admin
-# if Rails.env.development?
-#   AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
-# end
+## Categories
+staplers = Category.create(
+  name:        "Staplers",
+  description: "Different types of staplers."
+)
+
+staplers_large = Category.create(
+  name:        "Paper Finishing Staplers",
+  description: "Staplers for finishing papers.",
+  parent:      staplers
+)
+
+staplers_desktop = Category.create(
+  name:        "Desktop Staplers",
+  description: "For all your stapling needs.",
+  parent:      staplers
+)
+
+writing_utensils = Category.create(
+  name:        "Writing Utensils",
+  description: "Things to write with."
+)
+
+writing_utensils_pencils = Category.create(
+  name:        "Pencils",
+  description: "Writing with graphite.",
+  parent:      writing_utensils
+)
+
+writing_utensils_pens = Category.create(
+  name:        "Pens",
+  description: "Writing with ink.",
+  parent:      writing_utensils
+)
+
+writing_utensils_markers = Category.create(
+  name:        "Markers",
+  description: "Markers and Highlighters.",
+  parent:      writing_utensils
+)
+
+categories = [staplers_large, staplers_desktop, writing_utensils_pens, writing_utensils_markers, writing_utensils_pencils]
+
+## Products
+categories.each do |c|
+  20.times do
+    cost = Faker::Commerce.price
+    product = c.products.create(
+      upc:         Faker::Barcode.unique.upc_a,
+      name:        Faker::Commerce.unique.product_name,
+      cost:        cost,
+      price:       cost * 1.75,
+      description: Faker::Hacker.say_something_smart,
+      on_hand:     Faker::Number.between(from: 1, to: 1000)
+    )
+    query = URI.encode_www_form_component(product.name)
+    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
+    product.image.attach(io: downloaded_image, filename: "m-#{product.upc}.jpg")
+  end
+end
+
+# Active Admin
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
+end
