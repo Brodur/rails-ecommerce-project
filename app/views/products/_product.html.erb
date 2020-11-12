@@ -1,5 +1,5 @@
 <hr/>
-<h3><%= product.name %></h3>
+<h3><%= link_to product.name, product %></h3>
 <h3><%= product.upc %></h3>
 <p>Price: <%= number_to_currency product.price %></p>
 <p>Cost: <%= number_to_currency product.cost %></p>
@@ -13,3 +13,4 @@
 <% end %>
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
+<p><%= link_to 'Add to Cart', '#' %></p>
