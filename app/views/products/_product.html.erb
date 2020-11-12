@@ -13,4 +13,4 @@
 <% end %>
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
-<p><%= link_to 'Add to Cart', add_to_cart_path(product.id) %></p>
+<p><%= link_to 'Add to Cart', add_to_cart_path(product.id), method: :post %></p>
