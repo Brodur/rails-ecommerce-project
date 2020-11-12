@@ -10,7 +10,9 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    session[:cart] << params[:id]
+    id = params[:id].to_i
+
+    session[:cart] << id unless session[:cart].include?(id)
     redirect_to root_path
   end
 
