@@ -1,3 +1,14 @@
 <h1>Product#index</h1>
 
+<details>
+  <summary>Cart 🛒</summary>
+  <ul>
+    <% @cart.each do |product| %>
+      <li>
+        <%= product.name %>
+      </li>
+    <% end %>
+  </ul>
+</details>
+
 <%= render @products %>
