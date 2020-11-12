@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :initialize_session
-  before_action :increment_visit_count, only[:index, :show]
+  before_action :increment_visit_count, only: %i[index show]
 
   def index
     @products = Product.all.order("RANDOM()").limit(6).includes(:category)
