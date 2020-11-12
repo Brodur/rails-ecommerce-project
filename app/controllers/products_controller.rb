@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :initialize_session
+  before_action :load_cart
 
   def index
     @products = Product.all.limit(6).includes(:category)
@@ -20,5 +21,9 @@ class ProductsController < ApplicationController
 
   def initialize_session
     session[:cart] ||= []
+  end
+
+  def load_cart
+    @cart = Product.find(session[:cart])
   end
 end

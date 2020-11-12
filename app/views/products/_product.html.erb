@@ -13,4 +13,8 @@
 <% end %>
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
-<p><%= link_to 'Add to Cart', add_to_cart_path(product.id), method: :post %></p>
+<% if @cart.include?(product) %>
+  <p><em>✔ Product in Cart 🛒</em></p>
+<% else %>
+  <p><%= link_to 'Add to Cart 🛒', add_to_cart_path(product.id), method: :post %></p>
+<% end %>
