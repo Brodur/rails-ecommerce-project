@@ -14,7 +14,7 @@
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
 <% if @cart.include?(product) %>
-  <p><em>✔ Product in Cart 🛒</em></p>
+  <p><%= button_to '➖ Remove from Cart 🛒', remove_from_cart_path(product.id), method: :delete %></p>
 <% else %>
-  <p><%= link_to 'Add to Cart 🛒', add_to_cart_path(product.id), method: :post %></p>
+  <p><%= button_to '➕ Add to Cart 🛒', add_to_cart_path(product.id), method: :post %></p>
 <% end %>

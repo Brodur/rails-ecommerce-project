@@ -2,13 +2,17 @@
 
 <details>
   <summary>Cart 🛒</summary>
-  <ul>
-    <% @cart.each do |product| %>
-      <li>
-        <%= product.name %>
-      </li>
-    <% end %>
-  </ul>
+  <% if @cart.empty? %>
+    <p>Cart is empty!</p>
+  <% else %>
+    <ul>
+      <% @cart.each do |product| %>
+        <li>
+          <%= product.name %> <%= link_to ' ➖ from 🛒', remove_from_cart_path(product.id), method: :delete %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </details>
 
 <%= render @products %>
