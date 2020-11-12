@@ -1,0 +1,14 @@
+<h3><%= product.name %></h3>
+<h3><%= product.upc %></h3>
+<p>Price: <%= number_to_currency product.price %></p>
+<p>Cost: <%= number_to_currency product.cost %></p>
+
+<% if product.description.present? %>
+  <p><%= product.description %></p>
+<% end %>
+
+<% if product.image.present? %>
+  <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
+<% end %>
+
+<p>Category: <%= link_to product.category, product.category.name %></p>
