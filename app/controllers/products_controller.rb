@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     session[:cart] << params[:id]
+    redirect_to root_path
   end
 
   private
