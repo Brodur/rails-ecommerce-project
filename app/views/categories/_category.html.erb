@@ -1,5 +1,13 @@
 <hr/>
 <h3><%= category.name %></h3>
 <p><%= path_to_string category %></p>
+<% if category.children.present? %>
+  <h5>Child Categoires:</h5>
+  <ul>
+    <% category.children.each do |c| %>
+      <li><%= path_to_string c %></li>
+    <% end %>
+  </ul>
+<% end %>
 <p>Products: <%= category.products.count %></p>
 <%= render category.products %>
