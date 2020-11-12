@@ -11,14 +11,16 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    id = params[:id].to_i
+    id = params[:id]
+    quantity = params[:quantity].to_i
 
-    session[:cart] << id unless session[:cart].include?(id)
+    session[:cart][id] = quantity unless session[:cart].include?(id)
+
     redirect_to root_path
   end
 
   def remove_from_cart
-    id = params[:id].to_i
+    id = params[:id]
     session[:cart].delete(id)
 
     redirect_to root_path
@@ -27,10 +29,10 @@ class ProductsController < ApplicationController
   private
 
   def initialize_session
-    session[:cart] ||= []
+    session[:cart] ||= {}
   end
 
   def load_cart
-    @cart = Product.find(session[:cart])
+    @cart = session[:cart].map { |id, qty| [Product.find(id.to_i), qty] }.to_h
   end
 end

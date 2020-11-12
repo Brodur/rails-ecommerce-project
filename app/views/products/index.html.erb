@@ -1,14 +1,14 @@
 <h1>Product#index</h1>
-
+<%= debug session[:cart] %>
 <details>
   <summary>Cart 🛒</summary>
   <% if @cart.empty? %>
     <p>Cart is empty!</p>
   <% else %>
     <ul>
-      <% @cart.each do |product| %>
+      <% @cart.each do |product, quantity| %>
         <li>
-          <%= product.name %> <%= link_to ' ➖ from 🛒', remove_from_cart_path(product.id), method: :delete %>
+          <%= quantity %> x <%= product.name %> <%= link_to ' ➖ from 🛒', remove_from_cart_path(product.id), method: :delete %>
         </li>
       <% end %>
     </ul>

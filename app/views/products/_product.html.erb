@@ -16,5 +16,9 @@
 <% if @cart.include?(product) %>
   <p><%= button_to '➖ Remove from Cart 🛒', remove_from_cart_path(product.id), method: :delete %></p>
 <% else %>
-  <p><%= button_to '➕ Add to Cart 🛒', add_to_cart_path(product.id), method: :post %></p>
+  <%= form_with(url: add_to_cart_path(product.id), method: "post") do %>
+    <%= label_tag(:quantity, "Quantity:") %>
+    <%= number_field_tag 'quantity', '1', min: 1 %>
+    <%= submit_tag("➕ Add to Cart 🛒") %>
+  <% end %>
 <% end %>
