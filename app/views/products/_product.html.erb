@@ -1,5 +1,5 @@
 <hr/>
-<h3><%= product.name %></h3>
+<h3><%= link_to product.name, product %></h3>
 <h3><%= product.upc %></h3>
 <p>Price: <%= number_to_currency product.price %></p>
 <p>Cost: <%= number_to_currency product.cost %></p>
@@ -13,3 +13,12 @@
 <% end %>
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
+<% if @cart.include?(product) %>
+  <p><%= button_to '➖ Remove from Cart 🛒', remove_from_cart_path(product.id), method: :delete %></p>
+<% else %>
+  <%= form_with(url: add_to_cart_path(product.id), method: "post") do %>
+    <%= label_tag(:quantity, "Quantity:") %>
+    <%= number_field_tag 'quantity', '1', min: 1 %>
+    <%= submit_tag("➕ Add to Cart 🛒") %>
+  <% end %>
+<% end %>
