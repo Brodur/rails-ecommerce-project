@@ -9,9 +9,13 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def add_to_cart
+    session[:cart] << params[:id]
+  end
+
   private
 
   def initialize_session
-    session[:visit_count] ||= 0
+    session[:cart] ||= []
   end
 end
