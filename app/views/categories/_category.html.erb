@@ -1,0 +1,5 @@
+<hr/>
+<h3><%= category.name %></h3>
+<p><%= path_to_string category %></p>
+<p>Products: <%= category.products.count %></p>
+<%= render category.products %>
