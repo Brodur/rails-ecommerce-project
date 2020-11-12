@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.order("RANDOM()").limit(6).includes(:category)
   end
 
   def show

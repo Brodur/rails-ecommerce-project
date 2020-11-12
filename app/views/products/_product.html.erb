@@ -1,3 +1,4 @@
+<hr/>
 <h3><%= product.name %></h3>
 <h3><%= product.upc %></h3>
 <p>Price: <%= number_to_currency product.price %></p>
@@ -11,4 +12,4 @@
   <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
 <% end %>
 
-<p>Category: <%= link_to product.category, product.category.name %></p>
+<p>Category: <%= link_to product.category.name, product.category %></p>
