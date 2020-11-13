@@ -1,6 +1,6 @@
 <hr/>
 <h3><%= link_to product.name, product %></h3>
-<h3><%= product.upc %></h3>
+<p><%= product.upc %></p>
 <p>Price: <%= number_to_currency product.price %></p>
 <p>Cost: <%= number_to_currency product.cost %></p>
 <p>In stock: <%= pluralize product.on_hand, 'unit' %></p>
