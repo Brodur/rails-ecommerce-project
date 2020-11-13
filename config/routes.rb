@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
   patch "products/update_cart_quantity/:id", to: "products#update_cart_quantity", as: "update_cart_quantity"
 
-  root to: "categories#index"
+  root to: "products#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
