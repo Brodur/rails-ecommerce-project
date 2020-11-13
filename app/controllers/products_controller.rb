@@ -22,4 +22,13 @@ class ProductsController < ApplicationController
 
     redirect_to(request.referer || root_url)
   end
+
+  def update_cart_quantity
+    id = params[:id]
+    quantity = params[:quantity].to_i
+
+    session[:cart][id] = quantity if session[:cart].include?(id)
+
+    redirect_to(request.referer || root_url)
+  end
 end
