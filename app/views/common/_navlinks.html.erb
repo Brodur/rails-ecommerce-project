@@ -1,0 +1,17 @@
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item <%= 'active' if current_page?(root_path) %>">
+    <%= link_to root_path, class: "nav-link" do %>Home
+     <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(root_path) %>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
+    <%= link_to categories_path, class: "nav-link" do %>Categories
+     <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(categories_path) %>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if current_page?(products_path) %>">
+    <%= link_to products_path, class: "nav-link" do %>Products
+     <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(products_path) %>
+    <% end %>
+  </li>
+</ul>

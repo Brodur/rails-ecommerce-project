@@ -3,7 +3,7 @@
 <h3><%= product.upc %></h3>
 <p>Price: <%= number_to_currency product.price %></p>
 <p>Cost: <%= number_to_currency product.cost %></p>
-
+<p>In stock: <%= pluralize product.on_hand, 'unit' %></p>
 <% if product.description.present? %>
   <p><%= product.description %></p>
 <% end %>
@@ -18,7 +18,7 @@
 <% else %>
   <%= form_with(url: add_to_cart_path(product.id), method: "post") do %>
     <%= label_tag(:quantity, "Quantity:") %>
-    <%= number_field_tag 'quantity', '1', min: 1 %>
+    <%= number_field_tag 'quantity', '1', min: 1, max: product.on_hand %>
     <%= submit_tag("➕ Add to Cart 🛒") %>
   <% end %>
 <% end %>

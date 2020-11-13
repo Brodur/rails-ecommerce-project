@@ -1,7 +1,4 @@
 class ProductsController < ApplicationController
-  before_action :initialize_session
-  before_action :load_cart
-
   def index
     @products = Product.all.limit(6).includes(:category)
   end
@@ -16,23 +13,22 @@ class ProductsController < ApplicationController
 
     session[:cart][id] = quantity unless session[:cart].include?(id)
 
-    redirect_to root_path
+    redirect_to(request.referer || root_url)
   end
 
   def remove_from_cart
     id = params[:id]
     session[:cart].delete(id)
 
-    redirect_to root_path
+    redirect_to(request.referer || root_url)
   end
 
-  private
+  def update_cart_quantity
+    id = params[:id]
+    quantity = params[:quantity].to_i
 
-  def initialize_session
-    session[:cart] ||= {}
-  end
+    session[:cart][id] = quantity if session[:cart].include?(id)
 
-  def load_cart
-    @cart = session[:cart].map { |id, qty| [Product.find(id.to_i), qty] }.to_h
+    redirect_to(request.referer || root_url)
   end
 end
