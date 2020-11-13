@@ -1,18 +1,3 @@
 <h1>Product#index</h1>
 
-<details>
-  <summary>Cart 🛒</summary>
-  <% if @cart.empty? %>
-    <p>Cart is empty!</p>
-  <% else %>
-    <ul>
-      <% @cart.each do |product, quantity| %>
-        <li>
-          <%= quantity %> x <%= product.name %> <%= link_to ' ➖ from 🛒', remove_from_cart_path(product.id), method: :delete %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-</details>
-
 <%= render @products %>
