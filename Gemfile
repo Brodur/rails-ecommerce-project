@@ -31,6 +31,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'activeadmin' #Admin dashboard
 gem 'devise'      #Authentication for ActiveAdmin
 gem 'image_processing'
+gem 'inertia_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
