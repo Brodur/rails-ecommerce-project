@@ -32,6 +32,7 @@ gem 'activeadmin' #Admin dashboard
 gem 'devise'      #Authentication for ActiveAdmin
 gem 'image_processing'
 gem 'inertia_rails'
+gem 'react-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
