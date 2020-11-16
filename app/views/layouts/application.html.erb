@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application', defer: true %>
+    <title>InertiaTodo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'index' %>
   </head>
+
   <body>
     <%= render 'common/cart' %>
     <%= yield %>
