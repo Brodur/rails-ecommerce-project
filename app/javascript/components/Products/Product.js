@@ -3,7 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Button, ButtonGroup, InputBase } from "@material-ui/core";
 
 const Product = ({ product }) => {
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   function addItem(event){
     console.log(event)
