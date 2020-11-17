@@ -14,8 +14,10 @@ class ProductsController < ApplicationController
     render inertia: "Products/Product",
            props:   {
              product: product.as_json(
-               only: %i[id upc name price cost description on_hand category]
+               only:    %i[id upc name price cost description on_hand category]
              )
            }
   end
 end
+# json.url horse_path(horse)
+# json.image_url rails_blob_path(horse.image, only_path: true)

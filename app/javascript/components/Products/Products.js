@@ -6,13 +6,11 @@ import { List, ListItem } from "@material-ui/core";
 const Products = ({ products }) => {
 
   return (
-    <List>
+    <>
       {products.map((product) => (
-        <ListItem key={product.id}>
-          <Product product={product} />
-        </ListItem>
+          <Product product={product} key={product.id}/>
       ))}
-    </List>
+    </>
   );
 };
 
