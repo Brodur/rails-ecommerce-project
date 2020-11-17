@@ -8,8 +8,8 @@ const Products = ({ products }) => {
   return (
     <List>
       {products.map((product) => (
-        <ListItem>
-          <Product product={product} key={product.id}/>
+        <ListItem key={product.id}>
+          <Product product={product} />
         </ListItem>
       ))}
     </List>
