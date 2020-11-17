@@ -9,9 +9,7 @@ const Product = ({ product }) => {
     console.log(event)
     event.preventDefault();
     Inertia.post("/carts/add_to_cart/" + product.id, {
-      item: {
-        quantity: quantity,
-        id: product.id }
+        quantity: quantity
     });
   }
 

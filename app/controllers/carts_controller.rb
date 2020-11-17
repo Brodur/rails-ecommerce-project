@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   def add_to_cart
-    id = params[:item][:id]
-    quantity = params[:item][:quantity].to_i
+    id = params[:id]
+    quantity = params[:quantity].to_i
 
     session[:cart][id] = quantity unless session[:cart].include?(id)
 
