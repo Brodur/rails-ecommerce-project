@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ecommerce</title>
+    <title>TOSS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,9 +14,10 @@
   </head>
 
   <body>
-    <%= render 'common/navbar'%>
+    <%= render 'common/navbar' %>
     <div class="container">
       <%= yield %>
     </div>
+    <%= render 'common/footer' %>
   </body>
 </html>
