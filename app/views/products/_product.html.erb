@@ -14,11 +14,16 @@
 
 <p>Category: <%= link_to product.category.name, product.category %></p>
 <% if @cart.include?(product) %>
-  <p><%= button_to '➖ Remove from Cart 🛒', remove_from_cart_path(product.id), method: :delete %></p>
+  <p><%= button_to '➖ Remove from Cart 🛒', remove_from_cart_path(product.id), method: :delete, class: "btn btn-danger" %></p>
+    <%= form_with(url: update_cart_quantity_path(product.id), method: "patch") do %>
+      <%= label_tag(:quantity, "Quantity:") %>
+      <%= number_field_tag 'quantity', @cart[product].to_s, min: 1, max: product.on_hand %>
+      <%= submit_tag("✅ Update Quantity", class: "btn btn-success") %>
+    <% end %>
 <% else %>
   <%= form_with(url: add_to_cart_path(product.id), method: "post") do %>
     <%= label_tag(:quantity, "Quantity:") %>
     <%= number_field_tag 'quantity', '1', min: 1, max: product.on_hand %>
-    <%= submit_tag("➕ Add to Cart 🛒") %>
+    <%= submit_tag("➕ Add to Cart 🛒", class: "btn btn-primary") %>
   <% end %>
 <% end %>
