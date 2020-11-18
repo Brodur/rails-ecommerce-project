@@ -9,7 +9,7 @@
           <%= form_with(url: update_cart_quantity_path(product.id), method: "patch", class: "px-4 py-3") do %>
             <%= label_tag(:quantity, "Quantity:") %>
             <%= number_field_tag 'quantity', quantity.to_s, min: 1, max: product.on_hand %>
-            <%= submit_tag("✅ Update Quantity", class: "btn btn-secondary") %>
+            <%= submit_tag("✅ Update Quantity", class: "btn btn-success") %>
           <% end %>
       <% end %>
     </div>
