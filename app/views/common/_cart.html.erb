@@ -1,20 +1,17 @@
-<details>
-  <summary>Cart 🛒</summary>
-  <% if @cart.empty? %>
-    <p>Cart is empty!</p>
-  <% else %>
-    <ul>
+<div class="btn-group dropleft">
+  <button type="button" class="btn dropdown-toggle <%= @cart.empty? ? "disabled btn-secondary" : "btn-primary" %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Cart
+  </button>
+  <% unless @cart.empty? %>
+    <div class="dropdown-menu">
       <% @cart.each do |product, quantity| %>
-        <li>
-          <%= quantity %> x <%= product.name %> <%= link_to ' ➖ from 🛒', remove_from_cart_path(product.id), method: :delete %>
-
-          <%= form_with(url: update_cart_quantity_path(product.id), method: "patch") do %>
+        <%= link_to "#{quantity} x #{product.name} ❌", remove_from_cart_path(product.id), method: :delete %>
+          <%= form_with(url: update_cart_quantity_path(product.id), method: "patch", class: "px-4 py-3") do %>
             <%= label_tag(:quantity, "Quantity:") %>
             <%= number_field_tag 'quantity', quantity.to_s, min: 1, max: product.on_hand %>
-            <%= submit_tag("✅ Update Quantity") %>
+            <%= submit_tag("✅ Update Quantity", class: "btn btn-secondary") %>
           <% end %>
-        </li>
       <% end %>
-    </ul>
+    </div>
   <% end %>
-</details>
+</div>
