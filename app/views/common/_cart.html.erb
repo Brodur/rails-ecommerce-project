@@ -5,13 +5,15 @@
   <% unless @cart.empty? %>
     <div class="dropdown-menu">
       <% @cart.each do |product, quantity| %>
-        <%= link_to "#{quantity} x #{product.name} ❌", remove_from_cart_path(product.id), method: :delete %>
+        <%= link_to "#{product.name} ❌", remove_from_cart_path(product.id), method: :delete, class: "ml-2 mt-1 mr-2 text-decoration-none" %>
           <%= form_with(url: update_cart_quantity_path(product.id), method: "patch", class: "px-4 py-3") do %>
             <%= label_tag(:quantity, "Quantity:") %>
             <%= number_field_tag 'quantity', quantity.to_s, min: 1, max: product.on_hand %>
             <%= submit_tag("✅ Update Quantity", class: "btn btn-success") %>
           <% end %>
+            <hr/>
       <% end %>
+      <p class="ml-2 mb-0 mt-1"><%= pluralize(@cart.count, "Product") %></p>
     </div>
   <% end %>
 </div>
