@@ -1,23 +1,17 @@
 class ProductsController < ApplicationController
   def index
     products = Product.all.limit(6).includes(:category)
-    render inertia: "Products/Products",
+    render inertia: "App",
            props:   {
-             products: products.as_json(
-               only: %i[id upc name price cost description on_hand category]
-             )
+             products: products
            }
   end
 
   def show
     product = Product.find(params[:id])
-    render inertia: "Products/Product",
+    render inertia: "App",
            props:   {
-             product: product.as_json(
-               only:    %i[id upc name price cost description on_hand category]
-             )
+             products: [product]
            }
   end
 end
-# json.url horse_path(horse)
-# json.image_url rails_blob_path(horse.image, only_path: true)

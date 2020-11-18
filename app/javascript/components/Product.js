@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { Button, ButtonGroup, InputBase } from "@material-ui/core";
+import Routes from "../routes.js.erb";
 
 const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
