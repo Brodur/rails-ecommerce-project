@@ -9,5 +9,9 @@
     <% end %>
   </ul>
 <% end %>
+
 <p>Products: <%= category.products.count %></p>
-<%= render category.products %>
+
+<% category.products.each do |product| %>
+  <%= render partial: "products/products", locals: {product: product} %>
+<% end %>

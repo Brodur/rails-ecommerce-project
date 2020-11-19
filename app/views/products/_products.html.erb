@@ -1,0 +1,23 @@
+<div class="row border-bottom border-gray mb-2 mt-2">
+  <div class="col">
+    <h5><%= link_to product.name, product %></h5>
+  </div>
+  <div class="col">
+    <h5><%= number_to_currency product.price %></h5>
+  </div>
+  <div class="col">
+    <p>Category: <%= link_to product.category.name, product.category %></p>
+  </div>
+  <div class="w-100"></div>
+  <div class="col">
+    <% if product.image.present? %>
+      <%= image_tag product.image.variant(resize_to_limit: [60, 60]).processed, class: "m-2 rounded" %>
+    <% end %>
+  </div>
+  <div class="col">
+    <p><%= product.description %></p>
+  </div>
+  <div class="col">
+    <%= render partial: "products/product_buttons", locals: {product: product} %>
+  </div>
+</div>
