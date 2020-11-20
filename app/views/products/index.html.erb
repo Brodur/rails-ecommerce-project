@@ -1,6 +1,6 @@
 <h1>Product#index</h1>
-
+<%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
 <% @products.each do |product| %>
   <%= render partial: "products/products", locals: {product: product} %>
 <% end %>
-
+<%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
