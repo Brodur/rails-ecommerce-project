@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.includes(:products, :children, :parent).page params[:page]
+    @q = Category.ransack(params[:q])
+    @categories = @q.result(distinct: true).includes(:products, :children, :parent).page(params[:page])
   end
 
   def show
