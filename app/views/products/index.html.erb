@@ -3,8 +3,8 @@
 <%= search_form_for @q, class:"form-inline my-2 my-lg-0 input-group" do |f| %>
   <div class="input-group btn-group">
     <%= f.search_field :name_or_description_cont, class: "form-control w-50", placeholder: "Search term" %>
-    <%= f.submit class: "btn btn-success" %>
-    <%= link_to "Clear", products_path,  class: "btn btn-warning" %>
+    <%= f.submit class: "btn btn-outline-success" %>
+    <%= link_to "Clear", products_path,  class: "btn btn-outline-warning" %>
   </div>
 <% end %>
 
