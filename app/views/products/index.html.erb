@@ -1,4 +1,16 @@
-<h1>Product#index</h1>
+<h3><%= params[:q].present? ? "Results in Products for #{}" : "All Products" %></h3>
+
+<%= search_form_for @q, class:"form-inline my-2 my-lg-0 input-group" do |f| %>
+  <div class="input-group btn-group">
+    <div class="input-group-prepend">
+      <%= f.label :name_or_description_cont, class: "input-group-text" %>
+    </div>
+    <%= f.search_field :name_or_description_cont, class: "form-control w-25" %>
+    <%= f.submit class: "btn btn-success" %>
+    <%= link_to "Clear", products_path,  class: "btn btn-warning" %>
+  </div>
+<% end %>
+
 <%= paginate @products %>
 <% @products.each do |product| %>
   <%= render partial: "products/products", locals: {product: product} %>
