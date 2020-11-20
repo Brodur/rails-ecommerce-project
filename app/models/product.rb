@@ -9,5 +9,5 @@ class Product < ApplicationRecord
 
   has_one_attached :image
 
-  self.per_page = 10
+  paginates_per 10
 end
