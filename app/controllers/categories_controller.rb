@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all.includes(:products, :children, :parent)
+    @categories = Category.paginate(page: params[:page]).includes(:products, :children, :parent)
   end
 
   def show
