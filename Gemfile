@@ -31,8 +31,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'activeadmin' #Admin dashboard
 gem 'devise'      #Authentication for ActiveAdmin
 gem 'image_processing'
-gem 'will_paginate', '~> 3.1.0'
-gem 'will_paginate-bootstrap4'
+gem 'kaminari'
 
 
 
