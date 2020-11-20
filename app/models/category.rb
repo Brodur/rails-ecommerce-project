@@ -6,7 +6,7 @@ class Category < ApplicationRecord
   validates :name, presence: true
   validates_with CategoryValidator, attributes: [:parent]
 
-  self.per_page = 10
+  paginates_per 10
 
   # Gets the object's parents as an array of objects
   def path

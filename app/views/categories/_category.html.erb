@@ -12,8 +12,8 @@
 
 <p>Products: <%= category.products.count %></p>
 
-<%= will_paginate category.products.paginate(:page => params[:page]), list_classes: %w(pagination justify-content-end) %>
-<% category.products.paginate(:page => params[:page]).each do |product| %>
+<%= paginate category.products.page params[:page] %>
+<% category.products.page(params[:page]).each do |product| %>
   <%= render partial: "products/products", locals: {product: product} %>
 <% end %>
-<%= will_paginate category.products.paginate(:page => params[:page]), list_classes: %w(pagination justify-content-end) %>
+<%= paginate category.products.page params[:page] %>
