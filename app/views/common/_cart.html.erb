@@ -1,6 +1,6 @@
 <div class="btn-group dropdown">
   <button type="button" class="btn dropdown-toggle <%= @cart.empty? ? "disabled btn-secondary" : "btn-primary" %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Cart
+      Cart <%= @cart.empty? ? "" : "<span class=\"badge badge-light\">#{@cart.count}</span>".html_safe %>
   </button>
   <% unless @cart.empty? %>
     <div class="dropdown-menu">
