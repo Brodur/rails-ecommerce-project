@@ -3,7 +3,7 @@
       Cart <%= @cart.empty? ? "" : "<span class=\"badge badge-light\">#{@cart.count}</span>".html_safe %>
   </button>
   <% unless @cart.empty? %>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu p-2">
       <% @cart.each do |product, quantity| %>
         <%= link_to "#{product.name} ❌", remove_from_cart_path(product.id), method: :delete, class: "ml-2 mt-1 mr-2 text-decoration-none" %>
           <%= form_with(url: update_cart_quantity_path(product.id), method: "patch", class: "px-4 py-3") do %>
@@ -13,7 +13,7 @@
           <% end %>
             <hr/>
       <% end %>
-      <p class="ml-2 mb-0 mt-1"><%= pluralize(@cart.count, "Product") %></p>
+      <button class="btn btn-primary mx-auto w-100">Checkout</button>
     </div>
   <% end %>
 </div>
