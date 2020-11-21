@@ -33,7 +33,7 @@ gem 'devise'      # Authentication for ActiveAdmin
 gem 'image_processing' # Image resizing
 gem 'kaminari' # Pagination
 gem 'ransack', github: 'activerecord-hackery/ransack' # Search and filtering
-
+gem 'jquery-rails' # For autocomplete search
 
 
 
