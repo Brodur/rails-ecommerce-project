@@ -1,11 +1,12 @@
-<h1>Categories</h1>
-<div class="card-group">
+<h1>Categories <%= link_to "See All &rarr;".html_safe, categories_path, class: "badge badge-light" %></h1>
+<div class="card-group mb-5">
   <% @categories.each do |category| %>
     <%= render partial: "categories/category_card", locals: {category: category} %>
   <% end %>
 </div>
+
 <hr/>
-<h1>Products</h1>
+<h1>Products <%= link_to "See All &rarr;".html_safe, products_path, class: "badge badge-light" %></h1>
 <%= paginate @products %>
 <div class="row">
   <% @products.each do |product| %>
