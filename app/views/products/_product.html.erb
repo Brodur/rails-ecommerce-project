@@ -1,17 +1,19 @@
-<hr/>
-<h3><%= link_to product.name, product %></h3>
-<p><%= product.upc %></p>
-<p>Price: <%= number_to_currency product.price %></p>
-<p>Cost: <%= number_to_currency product.cost %></p>
-<p>In stock: <%= pluralize product.on_hand, 'unit' %></p>
-<% if product.description.present? %>
-  <p><%= product.description %></p>
-<% end %>
+<div class="row">
+  <% if product.image.present? %>
+    <%= image_tag product.image.variant(resize_to_limit: [300, 300]).processed, class: "col"  %>
+  <% end %>
+  <div class="col">
+    <h4><%= link_to product.name, product %> - <%= number_to_currency product.price %></h4>
+    <h6>Category: <%= link_to product.category.name, product.category %></h6>
+    <h6><%= product.upc %> - <%= product.on_hand > 0 ? "#{product.on_hand} available" : "Sold Out" %></h6>
+    <% if product.description.present? %>
+      <p><%= product.description %></p>
+    <% end %>
+    <%= render partial: "products/product_buttons", locals: {product: product} %>
+  </div>
+</div>
 
-<% if product.image.present? %>
-  <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
-<% end %>
 
-<p>Category: <%= link_to product.category.name, product.category %></p>
 
-<%= render partial: "products/product_buttons", locals: {product: product} %>
+
+

@@ -29,4 +29,9 @@ class Category < ApplicationRecord
     end
     path
   end
+
+  # Returns categories that have no parent but have children, or have products
+  def self.roots
+    where("parent_id IS NULL").select { |category| category.children.present? || category.products.present? }
+  end
 end

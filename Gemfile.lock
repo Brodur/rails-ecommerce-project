@@ -1,15 +1,15 @@
 GIT
   remote: https://github.com/activerecord-hackery/ransack.git
-  revision: 2dd89a2c1272c87762fc7c4500e44e8df7b8930b
+  revision: 376963c6f6116c915f554f545fbc04238b34c9e3
   specs:
     ransack (2.3.2)
-      activerecord (>= 5.2.1)
-      activesupport (>= 5.2.1)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
       i18n
 
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: 8b551c296fab26154acf67b24c30d607edac0542
+  revision: a1ffab7246fe7a77438f9e582e5b2ffacba32bb6
   branch: master
   specs:
     faker (2.14.0)
@@ -91,7 +91,7 @@ GEM
       ruby2_keywords (>= 0.0.2, < 1.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.5.0)
+    bootsnap (1.5.1)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -112,7 +112,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    erubi (1.9.0)
+    erubi (1.10.0)
     ffi (1.13.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -150,7 +150,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.2.1)
+    listen (3.3.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)

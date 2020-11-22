@@ -5,7 +5,7 @@
   <h5>Child Categoires:</h5>
   <ul>
     <% category.children.each do |c| %>
-      <li><%= path_to_string c %></li>
+      <li><%= link_to c.name, c %></li>
     <% end %>
   </ul>
 <% end %>
