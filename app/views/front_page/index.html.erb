@@ -6,5 +6,18 @@
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
-  <%= render @categories %>
 </div>
+<h1>Categories</h1>
+<%= render @categories %>
+
+<hr/>
+<h1>Products</h1>
+<%= paginate @products %>
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col mt-2 mb-2">
+      <%= render partial: "products/product_card", locals: {product: product} %>
+    </div>
+  <% end %>
+</div>
+<%= paginate @products %>

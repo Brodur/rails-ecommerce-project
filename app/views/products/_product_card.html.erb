@@ -1,0 +1,17 @@
+<div class="card" style="width: 24rem;">
+  <% if product.image.present? %>
+    <%= image_tag product.image.variant(resize_to_limit: [300, 300]).processed, class: "card-img-top"  %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to product.name, product %> - <%= number_to_currency product.price %></h5>
+    <h6><%= link_to product.category.name, product.category %></h6>
+    <h6><%= product.upc %> - <%= product.upc > 0 ? "In Stock" : "Sold Out" %></h6>
+    <% if product.description.present? %>
+      <p class="card-text"><%= product.description %></p>
+    <% end %>
+
+  </div>
+    <div class="card-footer">
+      <%= render partial: "products/product_buttons", locals: {product: product} %>
+    </div>
+</div>
