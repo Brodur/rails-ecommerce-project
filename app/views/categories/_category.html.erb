@@ -2,7 +2,7 @@
 <h3><%= category.name %></h3>
 <p><%= path_to_string category %></p>
 <% if category.children.present? %>
-  <h5>Child Categoires:</h5>
+  <h5>Sub-categoires:</h5>
   <ul>
     <% category.children.each do |c| %>
       <li><%= link_to c.name, c %></li>

@@ -13,9 +13,6 @@
 
 <%= paginate @categories %>
 <% @categories.each do |category| %>
-  <hr/>
-  <h3><%= link_to category.name, category %></h3>
-  <p>Products: <%= category.products.count %></p>
-  <p><%= path_to_string category %></p>
+  <%= render partial: "categories/categories", locals: {category: category} %>
 <% end %>
 <%= paginate @categories %>

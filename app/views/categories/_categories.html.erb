@@ -1,0 +1,20 @@
+<div class="row border-bottom border-gray mb-2 mt-2">
+  <div class="col">
+    <h5><%= link_to category.name, category %></h5>
+  </div>
+  <div class="col">
+    <% if category.description.present? %>
+      <p><%= category.description %></p>
+    <% end %>
+  </div>
+  <div class="col">
+    <% if category.parent.present? %>
+      <p><%= link_to category.parent.name, category.parent %></p>
+    <% end %>
+  </div>
+  <div class="col">
+    <% if category.products.present? %>
+      <p><%= pluralize(category.products.count, "Product") %></p>
+    <% end %>
+  </div>
+</div>
