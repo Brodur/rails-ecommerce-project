@@ -1,3 +1,5 @@
+<% breadcrumb :products %>
+
 <h3><%= params[:q].present? ? "Found Products" : "All Products" %></h3>
 
 <%= search_form_for @q, class:"form-inline my-2 my-lg-0 input-group" do |f| %>
