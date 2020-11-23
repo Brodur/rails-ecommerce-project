@@ -8,7 +8,7 @@
     <%= f.search_field :name_or_description_cont, class: "form-control", placeholder: "Search term" %>
     <%= f.select :category_id_eq, options_from_collection_for_select(Category.all, "id", "name"), include_blank: "All Categories", class: "form-control" %>
     <%= f.submit class: "btn btn-outline-success ml-2" %>
-    <%=  params[:q].present? ? (link_to "Clear", products_path,  class: "btn btn-outline-warning ml-2") : "" %>
+    <%= params[:q].present? ? (link_to "Clear", products_path,  class: "btn btn-outline-warning ml-2") : "" %>
   </div>
 <% end %>
 
