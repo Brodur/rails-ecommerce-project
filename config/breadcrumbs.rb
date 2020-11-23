@@ -10,6 +10,16 @@ crumb :product do |product|
   link product.name, products_path(product)
   parent :products
 end
+
+crumb :categories do
+  link "All Categories", categories_path
+end
+
+crumb :category do |category|
+  link category.name, categories_path(category)
+  parent :categories
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
