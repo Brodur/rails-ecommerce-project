@@ -8,7 +8,7 @@ end
 
 crumb :product do |product|
   link product.name, products_path(product)
-  parent :products
+  parent product.category
 end
 
 crumb :categories do
@@ -17,7 +17,11 @@ end
 
 crumb :category do |category|
   link category.name, categories_path(category)
-  parent :categories
+  if category.parent.present?
+    parent category.parent
+  else
+    parent :categories
+  end
 end
 
 # crumb :projects do
