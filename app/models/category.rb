@@ -5,6 +5,7 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
   validates_with CategoryValidator, attributes: [:parent]
+  validates :name, uniqueness: true
 
   paginates_per 10
 

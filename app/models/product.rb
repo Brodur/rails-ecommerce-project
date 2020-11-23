@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   validates :upc, :name, :price, :cost, presence: true
   validates :upc, numericality: true, length: { is: 12 }
   validates :price, :cost, numericality: true
+  validates :upc, uniqueness: true
 
   has_one_attached :image
 
