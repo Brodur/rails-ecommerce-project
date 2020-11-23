@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :products do
-  link "All Products", products_path
+  link "Products", products_path
 end
 
 crumb :product do |product|
@@ -12,11 +12,11 @@ crumb :product do |product|
 end
 
 crumb :categories do
-  link "All Categories", categories_path
+  link "Categories", categories_path
 end
 
 crumb :category do |category|
-  link category.name, categories_path(category)
+  link category.name, category
   if category.parent.present?
     parent category.parent
   else
