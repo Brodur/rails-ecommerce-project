@@ -1,4 +1,5 @@
 <% breadcrumb :categories %>
+<% breadcrumb :search_categories if params[:q].present? %>
 
 <h3><%= params[:q].present? ? "Found Categories" : "All Categories" %></h3>
 

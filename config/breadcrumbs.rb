@@ -24,6 +24,16 @@ crumb :category do |category|
   end
 end
 
+crumb :search_products do
+  link "Search", products_path
+  parent :products
+end
+
+crumb :search_categories do
+  link "Search", categories_path
+  parent :categories
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
