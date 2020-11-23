@@ -1,6 +1,9 @@
 <div class="card" style="width: 24rem;">
   <div class="card-body">
     <h5 class="card-title"><%= category.name %></h5>
+    <% if category.description.present? %>
+      <p><%= category.description %></p>
+    <% end %>
     <% if category.children.present? %>
       <h5>Sub-categories:</h5>
       <ul>

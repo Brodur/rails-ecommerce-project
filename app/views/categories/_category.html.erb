@@ -1,23 +1,35 @@
-<hr/>
-<h3><%= category.name %></h3>
-<p><%= path_to_string category %></p>
-<% if category.children.present? %>
-  <h5>Sub-categoires:</h5>
-  <ul>
-    <% category.children.each do |c| %>
-      <li><%= link_to c.name, c %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<p>Products: <%= category.products.count %></p>
-
-<%= paginate category.products.page params[:page] %>
 <div class="row">
-  <% category.products.page(params[:page]).each do |product| %>
-    <div class="col mt-2 mb-2">
-      <%= render partial: "products/product_card", locals: {product: product} %>
-    </div>
-  <% end %>
+  <div class="col">
+    <h4><%= category.name %></h4>
+    <% if category.description.present? %>
+      <p><%= category.description %></p>
+    <% end %>
+  </div>
+  <div class="col">
+    <% if category.parent.present? %>
+    <h5>Parent Category: <%= link_to category.parent.name, category.parent %></h5>
+    <% end %>
+    <% if category.children.present? %>
+      <h5>Sub-categoires:</h5>
+      <ul>
+        <% category.children.each do |c| %>
+          <li><%= link_to c.name, c %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
-<%= paginate category.products.page params[:page] %>
+
+<% if category.products.present? %>
+  <p>Products: <%= category.products.count %></p>
+
+  <%= paginate category.products.page params[:page] %>
+  <div class="row">
+    <% category.products.page(params[:page]).each do |product| %>
+      <div class="col mt-2 mb-2">
+        <%= render partial: "products/product_card", locals: {product: product} %>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate category.products.page params[:page] %>
+<% end %>
