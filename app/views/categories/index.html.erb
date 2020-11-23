@@ -1,3 +1,6 @@
+<% breadcrumb :categories %>
+<% breadcrumb :search_categories if params[:q].present? %>
+
 <h3><%= params[:q].present? ? "Found Categories" : "All Categories" %></h3>
 
 <%= search_form_for @q, class:"form-inline my-2 my-lg-0 input-group" do |f| %>
