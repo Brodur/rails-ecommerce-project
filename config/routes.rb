@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :customers
+  devise_for :customers, controllers: {
+    sessions: 'customers/sessions'
+  }
   resources :products, only: %i[index show]
   resources :categories, only: %i[index show]
   resources :front_page, only: %i[index]
