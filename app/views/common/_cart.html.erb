@@ -1,4 +1,4 @@
-<div class="btn-group dropdown">
+<div class="btn-group dropdown ml-2">
   <button type="button" class="btn dropdown-toggle <%= @cart.empty? ? "disabled btn-secondary" : "btn-info" %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Cart <%= @cart.empty? ? "" : "<span class=\"badge badge-light\">#{@cart.count}</span>".html_safe %>
   </button>
