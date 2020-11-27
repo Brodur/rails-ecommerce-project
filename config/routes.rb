@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions'
-  }
   resources :products, only: %i[index show]
   resources :categories, only: %i[index show]
   resources :front_page, only: %i[index]
@@ -13,6 +10,10 @@ Rails.application.routes.draw do
   root to: "front_page#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :customers, controllers: {
+    sessions: "customers/sessions"
+  }
+
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
