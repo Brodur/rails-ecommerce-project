@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+include Accessible
+skip_before_action :check_user, only: :destroy
+
 class Customers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
