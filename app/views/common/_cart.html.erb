@@ -9,7 +9,11 @@
           <p><%= quantity %> x <%= link_to product.name, product %> - <%= link_to "Remove", remove_from_cart_path(product.id), method: :delete, class: "badge badge-pill badge-danger" %></p>
         </div>
       <% end %>
-      <button class="btn btn-primary mx-auto w-100">Checkout</button>
+      <% if customer_signed_in? %>
+        <button class="btn btn-primary mx-auto w-100">Checkout</button>
+      <% else %>
+        <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-outline-primary" %>
+      <% end %>
     </div>
   <% end %>
 </div>
