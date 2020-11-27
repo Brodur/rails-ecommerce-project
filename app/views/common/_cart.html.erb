@@ -12,7 +12,7 @@
       <% if customer_signed_in? %>
         <button class="btn btn-primary mx-auto w-100">Checkout</button>
       <% else %>
-        <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-outline-primary" %>
+        <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-warning mx-auto w-100" %>
       <% end %>
     </div>
   <% end %>
