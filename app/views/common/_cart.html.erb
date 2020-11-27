@@ -1,4 +1,4 @@
-<div class="btn-group dropdown">
+<div class="btn-group dropdown ml-2">
   <button type="button" class="btn dropdown-toggle <%= @cart.empty? ? "disabled btn-secondary" : "btn-info" %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Cart <%= @cart.empty? ? "" : "<span class=\"badge badge-light\">#{@cart.count}</span>".html_safe %>
   </button>
@@ -9,7 +9,11 @@
           <p><%= quantity %> x <%= link_to product.name, product %> - <%= link_to "Remove", remove_from_cart_path(product.id), method: :delete, class: "badge badge-pill badge-danger" %></p>
         </div>
       <% end %>
-      <button class="btn btn-primary mx-auto w-100">Checkout</button>
+      <% if customer_signed_in? %>
+        <button class="btn btn-primary mx-auto w-100">Checkout</button>
+      <% else %>
+        <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-warning mx-auto w-100" %>
+      <% end %>
     </div>
   <% end %>
 </div>

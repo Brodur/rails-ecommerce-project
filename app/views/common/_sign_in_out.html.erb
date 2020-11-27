@@ -1,0 +1,7 @@
+<% if admin_user_signed_in? %>
+  <%= button_to "#{current_admin_user.email} - Sign Out", destroy_admin_user_session_path, method: "delete", class: "btn btn-outline-danger" %>
+<% elsif customer_signed_in? %>
+  <%= button_to "#{current_customer.name} - Sign Out", destroy_customer_session_path, method: "delete", class: "btn btn-outline-warning" %>
+<% else %>
+  <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-outline-primary" %>
+<% end %>
