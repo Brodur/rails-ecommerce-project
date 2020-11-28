@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show]
   resources :categories, only: %i[index show]
   resources :front_page, only: %i[index]
+  resources :customers, only: %i[index show]
   resources :addresses
 
   post "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"

@@ -34,6 +34,19 @@ crumb :search_categories do
   parent :categories
 end
 
+crumb :current_customer do
+  link current_customer.name, customers_path
+end
+
+crumb :addresses do
+  link "Addresses", addresses_path
+  parent :current_customer
+end
+
+crumb :address do |address|
+  link address.postal_code, address_path(address)
+  parent :addresses
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end

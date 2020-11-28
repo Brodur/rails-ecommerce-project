@@ -1,3 +1,4 @@
+<% breadcrumb @address %>
 <p id="notice"><%= notice %></p>
 <h1><%= "#{@address.address_line_one}, #{@address.city}, #{@address.province.code}, #{@address.postal_code.upcase}" %> <%= link_to "PRIMARY", "", class: "badge badge-pill badge-secondary" if @address.is_primary_address %></h1>
 <table class="table">
