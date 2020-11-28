@@ -1,4 +1,47 @@
 <p id="notice"><%= notice %></p>
+<h1><%= "#{@address.address_line_one}, #{@address.city}, #{@address.province.code}, #{@address.postal_code.upcase}" %> <%= link_to "PRIMARY", "", class: "badge badge-pill badge-secondary" if @address.is_primary_address %></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Field</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @address.customer.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Address Line 1</th>
+      <td><%= @address.address_line_one %></td>
+    </tr>
+    <tr>
+      <th scope="row">Address Line 2</th>
+      <td><%= @address.address_line_two unless @address.address_line_two.nil? %></td>
+    </tr>
+    <tr>
+      <th scope="row">Additional Details</th>
+      <td><%= @address.address_additional unless @address.address_additional.nil? %></td>
+    </tr>
+    <tr>
+      <th scope="row">City</th>
+      <td><%= @address.city %></td>
+    </tr>
+    <tr>
+      <th scope="row">Province</th>
+      <td><%= @address.province.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Country</th>
+      <td><%= @address.country_code %></td>
+    </tr>
+    <tr>
+      <th scope="row">Postal Code</th>
+      <td><%= @address.postal_code.upcase %></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_address_path(@address) %> |
 <%= link_to 'Back', addresses_path %>
