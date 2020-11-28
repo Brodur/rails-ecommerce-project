@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :set_address, only: %i[show edit update destroy]
+  before_action :authenticate_customer!
 
   # GET /addresses
   # GET /addresses.json
@@ -9,8 +10,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/1
   # GET /addresses/1.json
-  def show
-  end
+  def show; end
 
   # GET /addresses/new
   def new
@@ -18,17 +18,16 @@ class AddressesController < ApplicationController
   end
 
   # GET /addresses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /addresses
   # POST /addresses.json
   def create
-    @address = Address.new(address_params)
+    @address = current_customer.addresses.new(address_params)
 
     respond_to do |format|
       if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
+        format.html { redirect_to @address, notice: "Address was successfully created." }
         format.json { render :show, status: :created, location: @address }
       else
         format.html { render :new }
@@ -42,7 +41,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to @address, notice: "Address was successfully updated." }
         format.json { render :show, status: :ok, location: @address }
       else
         format.html { render :edit }
@@ -56,19 +55,20 @@ class AddressesController < ApplicationController
   def destroy
     @address.destroy
     respond_to do |format|
-      format.html { redirect_to addresses_url, notice: 'Address was successfully destroyed.' }
+      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_address
-      @address = Address.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def address_params
-      params.fetch(:address, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_address
+    @address = Address.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def address_params
+    params.fetch(:address, {}).permit(:customer_id, :province_id, :country_code, :is_primary_address, :address_line_one, :address_line_two, :address_additional, :city, :postal_code)
+  end
 end

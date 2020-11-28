@@ -1,4 +1,4 @@
-<%= form_with(model: address, local: true) do |form| %>
+<%= form_with(model: address, local: true) do |f| %>
   <% if address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
@@ -11,7 +11,35 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-check">
+    <%= f.check_box(:is_primary_address, class: "form-check-input") %>
+    <%= f.label(:is_primary_address, "Primary Address", class: "form-check-label") %>
+  </div>
+
+  <%= f.label(:address_line_one, value: "Address")%>
+  <%= f.text_field(:address_line_one, class: "form-control", placeholder: "Street address, ex: 123 John Street") %>
+
+  <%= f.label(:address_line_two, value: "Apartment, suite, etc.")%>
+  <%= f.text_field(:address_line_two, class: "form-control", placeholder: "Optional") %>
+
+  <%= f.label(:address_additional, value: "Additional Notes")%>
+  <%= f.text_field(:address_additional, class: "form-control", placeholder: "Optional details or instructions") %>
+
+  <%= f.label(:city, value: "City")%>
+  <%= f.text_field(:city, class: "form-control", placeholder: "City") %>
+
+  <%= f.label(:province_id, value: "Province")%>
+  <%= select_tag(:province_id, options_from_collection_for_select(Province.all.order(:name), "id", "name"), class: "form-control") %>
+
+  <%= f.label(:country_code, value: "Country")%>
+  <%= select_tag :country_code, options_for_select([['Canada', 'CA']]), class: "form-control" %>
+
+  <%= f.label(:postal_code, value: "Postal Code")%>
+  <%= f.text_field(:postal_code, class: "form-control", placeholder: "H0H 0H0") %>
+
+
+
+  <div class="actions mt-3">
+    <%= f.submit class: "btn btn-outline-success" %>
   </div>
 <% end %>
