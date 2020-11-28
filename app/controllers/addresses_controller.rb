@@ -23,7 +23,16 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.json
   def create
-    @address = current_customer.addresses.new(address_params)
+    @address = current_customer.addresses.build(
+      province:           Province.find(params[:province_id].to_i),
+      country_code:       params[:country_code],
+      is_primary_address: address_params[:is_primary_address].to_i == 1,
+      address_line_one:   address_params[:address_line_one],
+      address_line_two:   address_params[:address_line_two],
+      address_additional: address_params[:address_additional],
+      city:               address_params[:city],
+      postal_code:        address_params[:postal_code]
+    )
 
     respond_to do |format|
       if @address.save
@@ -69,6 +78,6 @@ class AddressesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def address_params
-    params.fetch(:address, {}).permit(:customer_id, :province_id, :country_code, :is_primary_address, :address_line_one, :address_line_two, :address_additional, :city, :postal_code)
+    params.require(:address).permit(:province_id, :country_code, :is_primary_address, :address_line_one, :address_line_two, :address_additional, :city, :postal_code, :address, {})
   end
 end
