@@ -47,6 +47,27 @@ crumb :address do |address|
   link address.postal_code, address_path(address)
   parent :addresses
 end
+
+crumb :new_address do
+  link "New Address", addresses_path
+  parent :addresses
+end
+
+crumb :orders do
+  link "Orders", orders_path
+  parent :current_customer
+end
+
+crumb :order do |order|
+  link order.id, order_path(address)
+  parent :orders
+end
+
+crumb :new_order do
+  link "New Order", orders_path
+  parent :orders
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
