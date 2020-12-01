@@ -29,7 +29,7 @@
   <%= f.text_field(:city, class: "form-control", placeholder: "City") %>
 
   <%= f.label(:province_id, value: "Province")%>
-  <%= select_tag(:province_id, options_from_collection_for_select(Province.all.order(:name), "id", "name"), class: "form-control") %>
+  <%= select_tag(:province_id, options_from_collection_for_select(Province.all.order(:name), "id", "name", (@address.province_id if address.present?)), class: "form-control") %>
 
   <%= f.label(:country_code, value: "Country")%>
   <%= select_tag :country_code, options_for_select([['Canada', 'CA']]), class: "form-control" %>
