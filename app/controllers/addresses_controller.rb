@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = current_customer.addresses
+    @addresses = current_customer.addresses.order(is_primary_address: :desc, updated_at: :desc)
   end
 
   # GET /addresses/1
