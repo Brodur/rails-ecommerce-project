@@ -1,7 +1,18 @@
 <% if admin_user_signed_in? %>
-  <%= button_to "#{current_admin_user.email} - Sign Out", destroy_admin_user_session_path, method: "delete", class: "btn btn-outline-danger" %>
+  <%= button_to "#{current_admin_user.email} - Sign Out", destroy_admin_user_session_path, method: "delete", class: "btn btn-danger" %>
 <% elsif customer_signed_in? %>
-  <%= button_to "#{current_customer.name} - Sign Out", destroy_customer_session_path, method: "delete", class: "btn btn-outline-warning" %>
+  <div class="btn-group dropdown ml-2">
+    <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= current_customer.name %>
+    </button>
+    <div class="dropdown-menu p-2">
+        <%= link_to "Profile", customers_path, class: "dropdown-item" %>
+        <%= link_to "Addresses", addresses_path, class: "dropdown-item" %>
+        <%= link_to "Orders", "#", class: "dropdown-item" %>
+        <%= link_to "Sign Out", destroy_customer_session_path, method: "delete", class: "dropdown-item border-top" %>
+    </div>
+  </div>
 <% else %>
-  <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-outline-primary" %>
+  <%= button_to "Sign in", new_customer_session_path, method: "get", class: "btn btn-primary" %>
 <% end %>
+
