@@ -1,40 +1,75 @@
 <% breadcrumb :new_order %>
-<h1>Checkout</h1>
+<h1>Review Order</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Actions</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.products_orders.each do |product_order| %>
-    <tr>
-      <td>
-        <% if product_order.product.image.present? %>
-          <%= image_tag product_order.product.image.variant(resize_to_limit: [45, 45]).processed, class: "m-2 rounded" %>
+<%= form_with(model: @order, local: true) do |f| %>
+
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-      </td>
-      <td>
-        <%= link_to product_order.product.name, product_order.product %>
-      </td>
-      <td>
-        <%= render partial: "products/product_buttons", locals: {product: product_order.product} %>
-      </td>
-      <td>
-        <%= number_to_currency product_order.subtotal %>
-      </td>
-    </tr>
-    <% end %>
-    <tr>
-      <td/>
-      <td/>
-      <td class="text-right">Subtotal</td>
-      <td><%= number_to_currency @order.subtotal %></td>
-    </tr>
+      </ul>
+    </div>
+  <% end %>
 
-  </tbody>
-</table>
+  <h5>Addresses</h5>
+
+  <% if current_customer.addresses.present? %>
+    <% current_customer.addresses.order(is_primary_address: :desc).each do |address| %>
+      <div class="form-check">
+        <%= f.radio_button :address_id, address.id, checked: (true if address.is_primary_address), class: "form-check-input" %>
+        <%= f.label :address_id, "#{address.address_line_one}, #{address.city}, #{address.province.code}, #{address.postal_code.upcase} #{'- Primary' if address.is_primary_address}", class: "form-check-label" %>
+      </div>
+    <% end %>
+    <p><%= link_to "Add new address", new_address_path %></p>
+  <% else %>
+    <p>No addresses on file, create one <%= link_to "here", new_address_path %>!</p>
+  <% end %>
+
+  <h5>Products in cart</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.products_orders.each do |product_order| %>
+      <tr>
+        <td>
+          <% if product_order.product.image.present? %>
+            <%= image_tag product_order.product.image.variant(resize_to_limit: [45, 45]).processed, class: "m-2 rounded" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to product_order.product.name, product_order.product %>
+        </td>
+        <td>
+          <%= render partial: "products/product_buttons", locals: {product: product_order.product} %>
+        </td>
+        <td>
+          <%= number_to_currency product_order.subtotal %>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+        <td/>
+        <td/>
+        <td class="text-right">Subtotal</td>
+        <td><%= number_to_currency @order.subtotal %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+  <div class="actions mt-3">
+    <%= f.submit class: "btn btn-primary mx-auto w-100" %>
+  </div>
+<% end %>

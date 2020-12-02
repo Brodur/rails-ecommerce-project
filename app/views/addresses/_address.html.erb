@@ -1,0 +1,6 @@
+<td><%= "#{address.address_line_one}, #{address.city}, #{address.province.code}, #{address.postal_code.upcase}" %> <%= link_to "PRIMARY", "", class: "badge badge-pill badge-secondary" if address.is_primary_address %></td>
+<td>
+  <%= link_to 'Show 🔎', address, class: "btn btn-primary" %>
+  <%= link_to 'Edit 🛠', edit_address_path(address), class: "btn btn-warning" %>
+  <%= link_to 'Destroy ✖', address, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</td>
