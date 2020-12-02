@@ -72,6 +72,8 @@ class OrdersController < ApplicationController
       if @order.save
         format.html { redirect_to @order, notice: "Address was successfully created." }
         format.json { render :show, status: :created, location: @address }
+        # Empty the cart
+        session[:cart] = {}
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
