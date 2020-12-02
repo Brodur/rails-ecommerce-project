@@ -11,13 +11,17 @@ class OrdersController < ApplicationController
 
   def new
     # Make sure we aren't getting passed a bad value
+    if params[:address_id].blank?
+      redirect_to(new_address_path)
+      return
+    end
+
     if Address.find(params[:address_id]).customer_id == current_customer.id
       address = Address.find(params[:address_id])
-    else
-      address = current_customer.primary_address if current_customer.primary_address.present?
-      # If it's still bad, make another address.
-      redirect_to(new_address_path) if address.nil?
+    elsif current_customer.primary_address.present?
+      address = current_customer.primary_address
     end
+    # If it's still bad, make another address.
 
     @order = address.orders.build
 

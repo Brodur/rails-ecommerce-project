@@ -13,6 +13,6 @@
     <p>No addresses on file, create one <%= link_to "here", new_address_path %> to place an order.</p>
   <% end %>
   <div class="actions mt-3">
-    <%= f.submit class: "btn btn-primary mx-auto w-100" %>
+    <%= f.submit class: "btn btn-primary mx-auto w-100 #{'disabled' unless current_customer.addresses.present? }" %>
   </div>
 <% end %>
