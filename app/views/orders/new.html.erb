@@ -1,6 +1,5 @@
 <% breadcrumb :new_order %>
 <h1 class="mt-2">Review Order</h1>
-<%= debug params %>
 
 <%= form_with(model: @order, local: true) do |f| %>
 
@@ -48,6 +47,18 @@
         <td/>
         <td class="text-right">Subtotal</td>
         <td><%= number_to_currency @order.subtotal %></td>
+      </tr>
+      <% @order.tax_rates.each do |t| %>
+        <tr>
+          <td/>
+          <td class="text-right"><%= t[:label] %></td>
+          <td><%= number_to_currency @order.subtotal * t[:rate] %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td/>
+        <td class="text-right"><strong>Total</strong></td>
+        <td><%= number_to_currency @order.grand_total %></td>
       </tr>
 
     </tbody>
