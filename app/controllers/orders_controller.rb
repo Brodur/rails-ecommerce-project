@@ -11,6 +11,15 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+
+    @cart.each do |product, quantity|
+      @order.products_orders.build(
+        product:        product,
+        quantity:       quantity,
+        historic_price: product.price,
+        historic_cost:  product.cost
+      )
+    end
     @addresses = current_customer.addresses
   end
 

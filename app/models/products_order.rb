@@ -4,4 +4,8 @@ class ProductsOrder < ApplicationRecord
 
   validates :historic_cost, :historic_price, :quantity, numericality: true
   validates :historic_cost, :historic_price, presence: true
+
+  def subtotal
+    product.price * quantity
+  end
 end
