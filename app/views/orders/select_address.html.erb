@@ -1,0 +1,17 @@
+<h1 class="mt-2">Choose an Address</h1>
+<%= form_with(url: new_order_path, local: true, method: "get") do |f| %>
+  <% if current_customer.addresses.present? %>
+    <% current_customer.addresses.order(is_primary_address: :desc).each do |address| %>
+      <div class="form-check">
+        <%= f.radio_button :address_id, address.id, checked: (true if address.is_primary_address), class: "form-check-input" %>
+        <%= f.label :address_id, "#{address.address_line_one}, #{address.city}, #{address.province.code}, #{address.postal_code.upcase} #{'- Primary' if address.is_primary_address}", class: "form-check-label" %>
+      </div>
+    <% end %>
+    <p><%= link_to "Add new address", new_address_path %></p>
+  <% else %>
+    <p>No addresses on file, create one <%= link_to "here", new_address_path %> to place an order.</p>
+  <% end %>
+  <div class="actions mt-3">
+    <%= f.submit class: "btn btn-primary mx-auto w-100" %>
+  </div>
+<% end %>

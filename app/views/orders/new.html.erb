@@ -1,5 +1,6 @@
 <% breadcrumb :new_order %>
 <h1>Review Order</h1>
+<%= debug params %>
 
 <%= form_with(model: @order, local: true) do |f| %>
 
@@ -15,19 +16,8 @@
     </div>
   <% end %>
 
-  <h5>Addresses</h5>
-
-  <% if current_customer.addresses.present? %>
-    <% current_customer.addresses.order(is_primary_address: :desc).each do |address| %>
-      <div class="form-check">
-        <%= f.radio_button :address_id, address.id, checked: (true if address.is_primary_address), class: "form-check-input" %>
-        <%= f.label :address_id, "#{address.address_line_one}, #{address.city}, #{address.province.code}, #{address.postal_code.upcase} #{'- Primary' if address.is_primary_address}", class: "form-check-label" %>
-      </div>
-    <% end %>
-    <p><%= link_to "Add new address", new_address_path %></p>
-  <% else %>
-    <p>No addresses on file, create one <%= link_to "here", new_address_path %>!</p>
-  <% end %>
+  <h5>Selected Address</h5>
+  <%= debug @address.id %>
 
   <h5>Products in cart</h5>
   <table class="table">

@@ -11,6 +11,9 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    if Address.find(params[:address_id]).customer_id == current_customer.id
+      @address = Address.find(params[:address_id])
+    end
 
     @cart.each do |product, quantity|
       @order.products_orders.build(
@@ -22,6 +25,8 @@ class OrdersController < ApplicationController
     end
     @addresses = current_customer.addresses
   end
+
+  def select_address; end
 
   def create; end
 

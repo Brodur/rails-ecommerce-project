@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show]
   resources :categories, only: %i[index show]
   resources :front_page, only: %i[index]
+
+  get "orders/select_address", to: "orders#select_address", as: "order_address_select"
   resources :orders, only: %i[index show new create]
 
   devise_for :customers, controllers: {
