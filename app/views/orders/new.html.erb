@@ -1,5 +1,5 @@
 <% breadcrumb :new_order %>
-<h1>Review Order</h1>
+<h1 class="mt-2">Review Order</h1>
 <%= debug params %>
 
 <%= form_with(model: @order, local: true) do |f| %>
@@ -17,7 +17,7 @@
   <% end %>
 
   <h5>Selected Address</h5>
-  <%= debug @address.id %>
+  <p><%= "#{@order.address.address_line_one}, #{@order.address.city}, #{@order.address.province.code}, #{@order.address.postal_code.upcase}" %></p>
 
   <h5>Products in cart</h5>
   <table class="table">
@@ -25,7 +25,6 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">Name</th>
-        <th scope="col">Actions</th>
         <th scope="col">Price</th>
       </tr>
     </thead>
@@ -38,10 +37,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to product_order.product.name, product_order.product %>
-        </td>
-        <td>
-          <%= render partial: "products/product_buttons", locals: {product: product_order.product} %>
+          <%= product_order.quantity  %> x <%= link_to product_order.product.name, product_order.product %>
         </td>
         <td>
           <%= number_to_currency product_order.subtotal %>
@@ -49,7 +45,6 @@
       </tr>
       <% end %>
       <tr>
-        <td/>
         <td/>
         <td class="text-right">Subtotal</td>
         <td><%= number_to_currency @order.subtotal %></td>
