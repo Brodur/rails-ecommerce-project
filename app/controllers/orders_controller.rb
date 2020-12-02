@@ -31,6 +31,50 @@ class OrdersController < ApplicationController
     end
   end
 
+  def create
+    # Make sure we aren't getting passed a bad value
+    if Address.find(params[:order][:address_id]).customer_id == current_customer.id
+      address = Address.find(params[:order][:address_id])
+    else
+      render :new
+    end
+
+    # Build the order with the address
+    @order = address.orders.build
+
+    # Build the products_orders
+    @cart.each do |product, quantity|
+      @order.products_orders.build(
+        product:        product,
+        quantity:       quantity,
+        historic_price: product.price,
+        historic_cost:  product.cost
+      )
+    end
+
+    # Fill in the historic tax rates
+    @order.customer = current_customer
+    if address.province.gst_rate.present? && address.province.gst_rate > 0
+      @order.historic_gst_rate = address.province.gst_rate
+    end
+    if address.province.pst_rate.present? && address.province.pst_rate > 0
+      @order.historic_pst_rate = address.province.pst_rate
+    end
+    if address.province.hst_rate.present? && address.province.hst_rate > 0
+      @order.historic_hst_rate = address.province.hst_rate
+    end
+
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to @order, notice: "Address was successfully created." }
+        format.json { render :show, status: :created, location: @address }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def select_address; end
 
   def view_cart
@@ -46,9 +90,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create; end
-
   def order_params
-    params.require(:odrer).permit
+    params.require(:odrer).permit({})
   end
 end

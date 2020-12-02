@@ -2,7 +2,7 @@
 <h1 class="mt-2">Review Order</h1>
 
 <%= form_with(model: @order, local: true) do |f| %>
-
+  <%= hidden_field(:order, :address_id, :value => params[:address_id]) %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this address from being saved:</h2>
