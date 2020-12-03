@@ -1,0 +1,41 @@
+<% breadcrumb :new_order %>
+<h1 class="mt-2">Products in cart</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.products_orders.each do |product_order| %>
+    <tr>
+      <td>
+        <% if product_order.product.image.present? %>
+          <%= image_tag product_order.product.image.variant(resize_to_limit: [45, 45]).processed, class: "m-2 rounded" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to product_order.product.name, product_order.product %>
+      </td>
+      <td>
+        <%= render partial: "products/product_buttons", locals: {product: product_order.product} %>
+      </td>
+      <td>
+        <%= number_to_currency product_order.subtotal %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td/>
+      <td/>
+      <td class="text-right">Subtotal</td>
+      <td><%= number_to_currency @order.subtotal %></td>
+    </tr>
+
+  </tbody>
+</table>
+<p>Edit the cart contents before proceeding to order.</p>
+<%= link_to "Confirm Cart", order_address_select_path, class: "btn btn-primary mx-auto w-100" %>

@@ -1,0 +1,7 @@
+<% breadcrumb :orders %>
+<h1>Order History</h1>
+<%= paginate @orders %>
+<% @orders.each do |order| %>
+  <%= render partial: "orders/orders", locals: {order: order} %>
+<% end %>
+<%= paginate @orders %>

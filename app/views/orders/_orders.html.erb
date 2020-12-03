@@ -1,0 +1,11 @@
+<div class="row border-bottom border-gray mb-2 mt-2">
+  <div class="col">
+    <h5><%= link_to order.created_at, order %></h5>
+  </div>
+  <div class="col">
+    <p>Payment Status: </p>
+  </div>
+  <div class="col">
+    <h5><%= number_to_currency order.grand_total %></h5>
+  </div>
+</div>

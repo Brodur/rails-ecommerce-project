@@ -1,0 +1,28 @@
+<% breadcrumb :new_order %>
+<h1 class="mt-2">Review Order</h1>
+
+<%= form_with(model: @order, local: true) do |f| %>
+  <%= hidden_field(:order, :address_id, :value => params[:address_id]) %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h5>Selected Address</h5>
+  <p><%= "#{@order.address.address_line_one}, #{@order.address.city}, #{@order.address.province.code}, #{@order.address.postal_code.upcase}" %></p>
+
+  <h5>Products in cart</h5>
+
+  <%= render @order %>
+
+  <div class="actions mt-3">
+    <%= f.submit class: "btn btn-primary mx-auto w-100" %>
+  </div>
+<% end %>

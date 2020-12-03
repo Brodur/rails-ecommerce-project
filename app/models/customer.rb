@@ -8,4 +8,8 @@ class Customer < ApplicationRecord
   has_many :provinces, through: :addresses
   validates :name, :email, presence: true
   validates :email, uniqueness: true
+
+  def primary_address
+    addresses.find_by(is_primary_address: true)
+  end
 end
