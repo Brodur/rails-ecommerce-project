@@ -34,7 +34,7 @@ gem 'image_processing' # Image resizing
 gem 'kaminari' # Pagination
 gem 'ransack', github: 'activerecord-hackery/ransack' # Search and filtering
 gem 'gretel' # Breadcrumbs
-
+gem 'stripe' # Payment api
 
 
 group :development, :test do
