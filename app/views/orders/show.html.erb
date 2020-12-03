@@ -2,4 +2,6 @@
 <h1>Order Summary</h1>
 <h6>Order placed <%= @order.created_at %> </h6>
 <p>Payment status: </p>
+<h6>Selected Address</h6>
+<p><%= "#{@order.address.address_line_one}, #{@order.address.city}, #{@order.address.province.code}, #{@order.address.postal_code.upcase}" %></p>
 <%= render @order %>
