@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_170642) do
+ActiveRecord::Schema.define(version: 2020_12_03_161201) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 2020_11_27_170642) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "address_id", null: false
-    t.datetime "order_date"
     t.decimal "historic_pst_rate", default: "0.0"
     t.decimal "historic_gst_rate", default: "0.0"
     t.decimal "historic_hst_rate", default: "0.0"
