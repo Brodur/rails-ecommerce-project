@@ -1,5 +1,7 @@
 <% breadcrumb :orders %>
 <h1>Order History</h1>
+<%= paginate @orders %>
 <% @orders.each do |order| %>
-  <%= link_to order.created_at, order%>
+  <%= render partial: "orders/orders", locals: {order: order} %>
 <% end %>
+<%= paginate @orders %>

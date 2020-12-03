@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @orders = current_customer.orders.order(order_date: :desc).page(params[:page])
+    @orders = current_customer.orders.order(created_at: :desc).page(params[:page])
   end
 
   def show
