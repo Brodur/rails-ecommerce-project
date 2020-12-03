@@ -1,2 +1,5 @@
 <% breadcrumb :orders %>
 <h1>Order History</h1>
+<% @orders.each do |order| %>
+  <%= link_to order.created_at, order%>
+<% end %>

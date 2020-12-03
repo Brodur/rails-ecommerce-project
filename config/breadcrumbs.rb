@@ -59,7 +59,7 @@ crumb :orders do
 end
 
 crumb :order do |order|
-  link order.id, order_path(order)
+  link order.created_at, order_path(order)
   parent :orders
 end
 

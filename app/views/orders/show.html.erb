@@ -1,2 +1,5 @@
 <% breadcrumb @order %>
 <h1>Order Summary</h1>
+<h6>Order placed <%= @order.created_at %> </h6>
+<p>Payment status: </p>
+<%= render @order %>
