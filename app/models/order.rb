@@ -35,4 +35,6 @@ class Order < ApplicationRecord
     end
     sum
   end
+
+  paginates_per 10
 end
