@@ -58,13 +58,13 @@ class OrdersController < ApplicationController
 
     # Fill in the historic tax rates
     @order.customer = current_customer
-    if address.province.gst_rate.present? && address.province.gst_rate > 0
+    if address.province.gst_rate.present? && address.province.gst_rate.positive?
       @order.historic_gst_rate = address.province.gst_rate
     end
-    if address.province.pst_rate.present? && address.province.pst_rate > 0
+    if address.province.pst_rate.present? && address.province.pst_rate.positive?
       @order.historic_pst_rate = address.province.pst_rate
     end
-    if address.province.hst_rate.present? && address.province.hst_rate > 0
+    if address.province.hst_rate.present? && address.province.hst_rate.positive?
       @order.historic_hst_rate = address.province.hst_rate
     end
 

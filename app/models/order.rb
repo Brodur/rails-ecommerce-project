@@ -16,13 +16,13 @@ class Order < ApplicationRecord
 
   def tax_rates
     tax = []
-    if address.province.pst_rate.present? && address.province.pst_rate > 0
+    if address.province.pst_rate.present? && address.province.pst_rate.positive?
       tax << { rate: address.province.pst_rate, label: "PST" }
     end
-    if address.province.gst_rate.present? && address.province.gst_rate > 0
+    if address.province.gst_rate.present? && address.province.gst_rate.positive?
       tax << { rate: address.province.gst_rate, label: "GST" }
     end
-    if address.province.hst_rate.present? && address.province.hst_rate > 0
+    if address.province.hst_rate.present? && address.province.hst_rate.positive?
       tax << { rate: address.province.hst_rate, label: "HST" }
     end
     tax
