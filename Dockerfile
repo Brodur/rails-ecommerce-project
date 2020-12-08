@@ -23,9 +23,6 @@ RUN apt-get update && \
 
 WORKDIR $RAILS_ROOT
 
-ENV RAILS_ENV='production'
-ENV SECRET_KEY_BASE='884bbb9da05d754c32af07a07c6d23d009f34857550fcef77b253da436cf3f56527f508d4e9f7f158560aa9465c03976d732190858df6f42dea13d2564e586e5'
-
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install --jobs 20 --retry 5 --without development test
