@@ -15,7 +15,8 @@ RUN apt-get update && \
   build-essential \
   nodejs \
   yarn \
-  libpq-dev && \
+  libpq-dev \
+  imagemagick && \
   mkdir -p $RAILS_ROOT && \
   apt-get clean autoclean && \
   apt-get autoremove -y && \
@@ -25,7 +26,10 @@ WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-RUN bundle install --jobs 20 --retry 5 --without development test
+
+
+RUN bundle config set without 'development test' \
+  && bundle install --jobs 20 --retry 5
 
 COPY package.json package.json
 COPY yarn.lock yarn.lock
