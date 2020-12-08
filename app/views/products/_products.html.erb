@@ -11,7 +11,7 @@
   <div class="w-100"></div>
   <div class="col">
     <% if product.image.present? %>
-      <%= image_tag product.image.variant(resize_to_limit: [60, 60]).processed, class: "m-2 rounded" %>
+      <%= image_tag product.image.variant(resize_to_limit: [60, 60]).processed, class: "m-2 rounded", alt: product.name %>
     <% end %>
   </div>
   <div class="col">
